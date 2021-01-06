@@ -1,0 +1,9 @@
+<form #createForm="ngForm" (submit)="submitForm(createForm)">
+
+  <input type="text" ngModel name="postTitle">
+
+  <textarea ngModel name="postContent"></textarea>
+
+  <button-component [buttonType]="buttonType.Submit">Post</button-component>
+
+</form>

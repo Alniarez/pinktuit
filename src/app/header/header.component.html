@@ -1,0 +1,19 @@
+<header>
+  <h1>PinkTuit</h1>
+
+  <div>
+    <button-component (buttonWasClicked)="logIn($event)">
+      Log in
+    </button-component>
+
+    <button-component (buttonWasClicked)="createAccount($event)">
+      Create account
+    </button-component>
+
+    <button-component (buttonWasClicked)="logOut($event)" [disabled]="true"  >
+      Log out
+    </button-component>
+  </div>
+
+
+</header>

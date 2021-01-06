@@ -1,0 +1,11 @@
+:host{
+  margin: 1rem;
+}
+
+h1 {
+  color: thistle;
+}
+
+button-component:not(:first-child) {
+  margin-left: 1rem;
+}

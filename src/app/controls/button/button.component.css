@@ -1,0 +1,19 @@
+button {
+	background: none;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+
+  padding: 1em;
+  border: 1px solid pink;
+  border-radius: 3px;
+}
+
+button:hover {
+    background-color: salmon;
+}
+
+button:disabled {
+ opacity: 50%;
+}
+
