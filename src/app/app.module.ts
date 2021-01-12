@@ -9,6 +9,7 @@ import { ButtonComponent } from './controls/button/button.component';
 import { FormsModule } from '@angular/forms';
 import { PostCreateComponent } from './features/post/post-create/post-create.component';
 import { PostViewComponent } from './features/post/post-view/post-view.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PostViewComponent } from './features/post/post-view/post-view.component
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
