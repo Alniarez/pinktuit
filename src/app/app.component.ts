@@ -11,18 +11,16 @@ import { PostService } from './features/post/post.service';
 export class AppComponent implements OnInit, OnDestroy {
 
   posts: Post[] = [];
+
   private _postUpdateSubscription: Subscription;
 
-  constructor(private readonly postService: PostService){
-  }
+  constructor(private readonly postService: PostService){}
 
   ngOnInit(): void {
-    console.log("AppComponent :: init")
     this.postService.requestPosts();
 
     this._postUpdateSubscription = this.postService.getPostUpdateListener()
       .subscribe((posts: Post[]) => {
-          console.log("AppComponent :: PostUpdateListener")
           this.posts = posts
         }
       );

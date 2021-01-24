@@ -18,16 +18,13 @@ export class PostCreateComponent {
   ButtonType:typeof ButtonType = ButtonType;
 
   submitForm(form: NgForm){
-    console.log("PostCreateComponent :: Submit create post form")
+    console.log("Submit create post form")
     const post: Post = {
       id: null,
       title: form.value.postTitle,
       content: form.value.postContent
     }
-
-    console.log(post)
-
-    if(post.title !== "" && post.content !== "") {
+    if(post.title && post.content) {
       this.postService.addPost(post);
         form.reset()
     }
