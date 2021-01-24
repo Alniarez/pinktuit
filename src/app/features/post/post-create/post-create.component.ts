@@ -2,6 +2,7 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ButtonType } from "src/app/controls/button/button.component";
+import { Post } from "../post.model";
 import { PostService } from "../post.service";
 
 @Component({
@@ -13,15 +14,21 @@ export class PostCreateComponent {
 
   constructor(private readonly postService: PostService) {
   }
-  buttonType:typeof ButtonType = ButtonType;
+
+  ButtonType:typeof ButtonType = ButtonType;
 
   submitForm(form: NgForm){
-    if(form.value.postTitle !== "" && form.value.postContent !== "") {
-      this.postService.addPost({
-        id: "id",
-        title: form.value.postTitle,
-        content: form.value.postContent
-      });
+    console.log("PostCreateComponent :: Submit create post form")
+    const post: Post = {
+      id: null,
+      title: form.value.postTitle,
+      content: form.value.postContent
+    }
+
+    console.log(post)
+
+    if(post.title !== "" && post.content !== "") {
+      this.postService.addPost(post);
         form.reset()
     }
   }

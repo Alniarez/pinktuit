@@ -10,6 +10,7 @@ export class PostService {
   }
 
   private _posts: Post[] = [];
+
   private postsUpdated = new Subject<Post[]>();
 
   get posts(){
@@ -17,9 +18,15 @@ export class PostService {
   }
 
   requestPosts(){
-    this.http.get< { message: string, posts: Post[] } >("http://localhost:3000/api/posts").subscribe((postsResponse) => {
-      console.dir(postsResponse)
-      this.postsUpdated.next(postsResponse.posts);
+    console.log("Post service :: Request posts ")
+    this.http.get<{message: string, posts: Post[]}>("http://localhost:3000/api/posts")
+
+    .subscribe((postsResponse ) => {
+
+      console.log("Post service :: Request posts :: " + postsResponse.message)
+      console.dir(postsResponse.posts)
+
+      this.postsUpdated.next( postsResponse.posts );
     })
   }
 
@@ -27,13 +34,17 @@ export class PostService {
     return this.postsUpdated.asObservable();
   }
 
-  addPost(post: Post){
-    this.http.post<{message: string}>("http://localhost:3000/api/posts", post)
-      .subscribe((response) => {
-        console.log(response.message)
-        this._posts.push(post);
+  addPost(post: Post) {
+    console.log("Post service :: Add post ")
+    console.dir(post)
+    this.http
+      .post<{ message: string }>("http://localhost:3000/api/posts", post)
+      .subscribe(responseData => {
+        console.log("Post service :: Add post :: " + responseData.message)
+
+        this.posts.push(post);
         this.postsUpdated.next([...this.posts]);
-      })
+      });
   }
 
   deletePost(post: Post){

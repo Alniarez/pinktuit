@@ -17,19 +17,20 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log("About to subscribe")
+    console.log("AppComponent :: init")
     this.postService.requestPosts();
+
     this._postUpdateSubscription = this.postService.getPostUpdateListener()
-    .subscribe((posts: Post[]) => {
-        console.log("Getting the post on subscribe")
-        this.posts = posts
-      }
+      .subscribe((posts: Post[]) => {
+          console.log("AppComponent :: PostUpdateListener")
+          this.posts = posts
+        }
       );
   }
 
   ngOnDestroy(): void {
       this._postUpdateSubscription?.unsubscribe()
-  }
+    }
 
 }
 
