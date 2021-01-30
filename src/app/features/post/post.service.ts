@@ -13,9 +13,11 @@ export class PostService {
   private postsUpdated = new Subject<Post[]>();
 
   requestPosts(){
-    this.http.get<{message: string, posts: Post[]}>("http://localhost:3000/api/posts")
-    .subscribe((postsResponse ) => {
-      this._posts = postsResponse.posts;
+    this.http.get<{message: string, posts: { _id: string,title: string,content: string}[] }>("http://localhost:3000/api/posts")
+    .subscribe(( postsResponse ) => {
+      this._posts = postsResponse.posts.map(
+          post => { return {id: post._id, content: post.content, title: post.title } }
+        );
       this.postsUpdated.next(this._posts);
     })
   }

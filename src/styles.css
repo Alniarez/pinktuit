@@ -1,19 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: HachiMaruPop;
+    src: url(assets/HachiMaruPop-Regular.ttf);
+}
+
+:root {
+  --pastel-pink-lighter: #ffebef;
+  --pastel-pink: #ffd1dc;
+  --pastel-pink-darker: #ff9eb5;
+
+  --pastel-blue: #d1dcff;
+  --pastel-blue-darker: #9eb5ff;
+
+  --pastel-green: #dcffd1;
+  --pastel-green-darker: #b5ff9e;
+
+  --pastel-black: #474039;
+  --pastel-white: #f7f7f7;
+
+}
+
 html {
   box-sizing: border-box;
   font-size: 16px;
   overflow-x: hidden;
   scroll-behavior: smooth;
 
+  font-family: HachiMaruPop;
+
+  color: var(--pastel-black);
+  background-color: var(--pastel-blue);
+}
+
+::selection{
+  background-color: var(--pastel-green-darker);
 }
 
 *,
 *:before,
 *:after {
   box-sizing: inherit;
+  scrollbar-color: var(--pastel-black) transparent;
+  scrollbar-width: thin;
 }
 body,
 html {
   height: 100%;
   margin: 0;
 }
+
+textarea {
+  font-family: HachiMaruPop, Times, serif;
+}
+
+

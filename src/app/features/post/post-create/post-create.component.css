@@ -2,6 +2,40 @@
   display: block;
 }
 
+form {
+  display: grid;
+  gap: 1em;
+
+  grid-template-areas:
+    'text-area text-area'
+    'counter action';
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+}
+ /*textarea, input[type=text]*/
+ form > div {
+  grid-area: text-area;
+  display: grid;
+
+}
+span {
+  grid-area: counter;
+}
+button-component {
+  grid-area: action;
+  display: grid;
+}
+
 textarea {
-  width: 100%;
+  resize: none;
+  background-color: var(--pastel-pink-lighter);
+  border: solid 2px var(--pastel-white);
+  border-radius: 2px;
+  padding: 1rem;
+  margin: 1px;
+}
+
+button-component {
+  justify-self: end;
 }

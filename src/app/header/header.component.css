@@ -1,9 +1,18 @@
 :host{
-  margin: 1rem;
+  padding: 1rem;
+  background-color: var(--pastel-pink);
 }
 
-h1 {
-  color: thistle;
+header {
+  display: flex;
+  align-items: center;
+}
+
+span {
+  font-size: 2.6rem;
+  color: var(--pastel-pink-darker);
+  margin-right: auto;
+  flex-wrap: wrap;
 }
 
 button-component:not(:first-child) {

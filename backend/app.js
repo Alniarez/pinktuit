@@ -1,6 +1,19 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const Post = require("./post")
+
+
+mongoose.connect("mongodb+srv://alniarez-mongo:PASS@mycluster.yojcv.mongodb.net/MyCluster?retryWrites=true&w=majority",
+{ useUnifiedTopology: true})
+.then(() => {
+  console.log("Connected to database!");
+})
+.catch(() => {
+  console.log("Connection failed!");
+})
+
 
 const app = express();
 
@@ -17,18 +30,39 @@ app.use((req, res, next) => {
 
 // Get posts
 app.get("/api/posts", (req, res, next) => {
-  res
-    .status(200)
-    .json( { message: "Post fetched succesfully",  posts: [{id: "aa", title: "First post",  content: "The content of the first post"}]} )
-});
+  Post.find().then( documents => {
+    res.status(200)
+    .json({
+       message: "Post fetched succesfully",
+       posts: documents
+    })
+  })
+})
+
+// Delete posts
+app.delete("/api/posts/:id", (req, res, next) => {
+  let postId = req.params.id;
+
+  Post.deleteOne({_id: postId}).then( documents => {
+    res.status(200).json( { message: "Post deleted succesfully" })
+  })
+})
 
 // Install a package: npm install save body-parser
 app.post("/api/posts", (req, res, next) => {
-  const post = req.body
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content
+  })
 
-  console.log(post)
+  post.save().then(createdPost => {
+    res.status(201).json ({
+      message: "Post added succesfully",
+     postId: createdPost._id,
+     })
+  })
 
-  res.status(201).json({ message: "Post added" })
+  console.log
 });
 
 module.exports = app;

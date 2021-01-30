@@ -1,13 +1,27 @@
 :host{
-  display: block;
+  display: grid;
+
+  grid-template-areas:
+    'post'
+    'actions';
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr auto;
 
   width: 100%;
 
   padding: 0.3rem;
-  border: tomato solid 2px;
+  border: var(--pastel-pink-lighter) solid 2px;
   border-radius: 6px;
 
   font-weight: bold;
 }
 
+span {
+  grid-area: post;
+}
+
+button-component {
+  grid-area: actions;
+  justify-self: end;
+}
 

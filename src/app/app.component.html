@@ -1,11 +1,11 @@
 <header-component></header-component>
-
 <section>
-
+  <!--
+    <router-outlet></router-outlet>
+  -->
   <post-create></post-create>
 
   <div *ngIf="posts.length === 0">No posts yet</div>
-
   <post-view *ngFor="let post of posts" [post]="post"></post-view>
 
 </section>

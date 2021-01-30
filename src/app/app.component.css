@@ -6,7 +6,12 @@
 }
 
 section {
-  margin: 1rem;
+  max-width: 780px;
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--pastel-pink);
 }
 
 post-view {
