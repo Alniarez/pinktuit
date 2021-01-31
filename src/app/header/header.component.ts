@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'header-component',
@@ -7,12 +8,19 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor(private _router: Router) { }
+
+  navigateHome(event){
+    this._router.navigate([""])
+  }
+
   createAccount(event) {
     console.log('User wants to create an account');
   }
 
   logIn(event) {
     console.log('User wants to log in');
+    this._router.navigate(['login'])
   }
 
   logOut(event) {

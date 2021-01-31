@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { PostCreateComponent } from './features/post/post-create/post-create.component';
 import { PostViewComponent } from './features/post/post-view/post-view.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserLoginComponent } from './features/user/user-login/user-login.component';
+import { FeedComponent } from './features/feed/feed.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,12 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    FeedComponent,
+    // Post
     PostCreateComponent,
     PostViewComponent,
+    // User
+    UserLoginComponent,
     // Controls
     ButtonComponent,
   ],

@@ -17,6 +17,8 @@ export class ButtonComponent {
   @Input()
   buttonType = ButtonType.Button;
 
+  @Input("noStyle") noStyle: boolean = false;
+
   @Input("disabled")
   isDisabled: boolean = false;
 
@@ -24,6 +26,7 @@ export class ButtonComponent {
   onClickEmitter: EventEmitter<MouseEvent> = new EventEmitter();
 
   onClick(event: MouseEvent) {
+    console.log("Button clicked")
     this.onClickEmitter.emit(event);
   }
 

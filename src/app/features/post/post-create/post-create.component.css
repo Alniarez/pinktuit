@@ -13,15 +13,16 @@ form {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr auto;
 }
- /*textarea, input[type=text]*/
- form > div {
+
+ textarea, input[type=text]{
   grid-area: text-area;
   display: grid;
-
 }
+
 span {
   grid-area: counter;
 }
+
 button-component {
   grid-area: action;
   display: grid;

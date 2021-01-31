@@ -5,8 +5,9 @@ const mongoose = require("mongoose");
 const Post = require("./post")
 
 
-mongoose.connect("mongodb+srv://alniarez-mongo:PASS@mycluster.yojcv.mongodb.net/MyCluster?retryWrites=true&w=majority",
-{ useUnifiedTopology: true})
+mongoose.connect(
+  "mongodb+srv://alniarez-mongo:FtyF9F7mvviniNq@mycluster.yojcv.mongodb.net/MyCluster?retryWrites=true&w=majority",
+  { useUnifiedTopology: true } )
 .then(() => {
   console.log("Connected to database!");
 })
@@ -42,22 +43,24 @@ app.get("/api/posts", (req, res, next) => {
 // Delete posts
 app.delete("/api/posts/:id", (req, res, next) => {
   let postId = req.params.id;
-
-  Post.deleteOne({_id: postId}).then( documents => {
+  Post.deleteOne({_id: postId})
+  .then( documents => {
     res.status(200).json( { message: "Post deleted succesfully" })
+  }).catch(error => {
+    console.error(error)
+    res.status(304).json( { message: "Could not delete a post" })
   })
 })
 
 // Install a package: npm install save body-parser
 app.post("/api/posts", (req, res, next) => {
   const post = new Post({
-    title: req.body.title,
     content: req.body.content
   })
 
   post.save().then(createdPost => {
     res.status(201).json ({
-      message: "Post added succesfully",
+     message: "Post added succesfully",
      postId: createdPost._id,
      })
   })

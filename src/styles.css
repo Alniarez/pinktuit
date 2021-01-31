@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
     font-family: HachiMaruPop;
-    src: url(assets/HachiMaruPop-Regular.ttf);
+    src: url(assets/HachiMaruPop-Regular.ttf) format('truetype');
 }
 
 :root {
@@ -32,7 +32,7 @@ html {
   background-color: var(--pastel-blue);
 }
 
-::selection{
+::selection {
   background-color: var(--pastel-green-darker);
 }
 

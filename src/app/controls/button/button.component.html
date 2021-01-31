@@ -1,8 +1,7 @@
 <button ng-btn
         [type]="buttonType"
         [disabled]="isDisabled"
-        (click)="onClick($event)">
-
+        (click)="onClick($event)"
+        [class.noStyle]="noStyle">
   <ng-content></ng-content>
-
 </button>

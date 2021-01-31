@@ -1,43 +1,54 @@
-import { Injectable } from "@angular/core";
-import { Post } from "./post.model";
-import { HttpClient } from "@angular/common/http";
-import { Subject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Post } from './post.model';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
-@Injectable( { providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class PostService {
-
-  constructor(private readonly http: HttpClient){}
+  constructor(private readonly http: HttpClient) {}
 
   private _posts: Post[] = [];
 
   private postsUpdated = new Subject<Post[]>();
 
-  requestPosts(){
-    this.http.get<{message: string, posts: { _id: string,title: string,content: string}[] }>("http://localhost:3000/api/posts")
-    .subscribe(( postsResponse ) => {
-      this._posts = postsResponse.posts.map(
-          post => { return {id: post._id, content: post.content, title: post.title } }
-        );
-      this.postsUpdated.next(this._posts);
-    })
+  requestPosts() {
+    this.http
+      .get<{ message: string; posts: { _id: string; content: string }[] }>(
+        'http://localhost:3000/api/posts'
+      )
+      .subscribe((postsResponse) => {
+        this._posts = postsResponse.posts.map((post) => {
+          return { id: post._id, content: post.content };
+        });
+        this.postsUpdated.next([...this._posts]);
+      });
   }
 
-  getPostUpdateListener(){
+  getPostUpdateListener() {
     return this.postsUpdated.asObservable();
   }
 
   addPost(post: Post) {
     this.http
-      .post<{ message: string }>("http://localhost:3000/api/posts", post)
-      .subscribe(responseData => {
-        console.log(responseData.message)
+      .post<{ message: string,  postId: string }>('http://localhost:3000/api/posts', post)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+        post.id = responseData.postId;
         this._posts.push(post);
         this.postsUpdated.next([...this._posts]);
       });
   }
 
-  deletePost(post: Post){
-    // TODO: remove a post
+  deletePost(post: Post) {
+    if (post)
+      this.http
+        .delete<{ message: string }>(
+          `http://localhost:3000/api/posts/${post.id}`
+        )
+        .subscribe((deleteResponse) => {
+          console.log(deleteResponse.message);
+          this._posts.splice(this._posts.indexOf(post), 1);
+          this.postsUpdated.next([...this._posts]);
+        });
   }
-
 }

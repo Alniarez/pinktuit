@@ -1,15 +1,17 @@
 <header>
-    <span>PinkTuit</span>
+    <button-component (onClick)="navigateHome($event)" [noStyle]=true>
+      <span>PinkTuit</span>
+    </button-component>
 
-    <button-component (buttonWasClicked)="logIn($event)">
+    <button-component (onClick)="logIn($event)">
       Log in
     </button-component>
 
-    <button-component (buttonWasClicked)="createAccount($event)">
+    <button-component (onClick)="createAccount($event)">
       Create account
     </button-component>
 
-    <button-component (buttonWasClicked)="logOut($event)" [disabled]="true"  >
+    <button-component (onClick)="logOut($event)" [disabled]="true"  >
       Log out
     </button-component>
 

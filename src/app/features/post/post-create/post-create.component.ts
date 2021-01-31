@@ -21,10 +21,9 @@ export class PostCreateComponent {
     console.log("Submit create post form")
     const post: Post = {
       id: null,
-      title: form.value.postTitle,
       content: form.value.postContent
     }
-    if(post.title && post.content) {
+    if(post.content) {
       this.postService.addPost(post);
         form.reset()
     }

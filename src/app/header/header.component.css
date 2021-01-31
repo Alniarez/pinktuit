@@ -11,10 +11,11 @@ header {
 span {
   font-size: 2.6rem;
   color: var(--pastel-pink-darker);
-  margin-right: auto;
   flex-wrap: wrap;
 }
-
+button-component:first-child{
+  margin-right: auto;
+}
 button-component:not(:first-child) {
   margin-left: 1rem;
 }
