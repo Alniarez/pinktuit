@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
+
   constructor(private readonly http: HttpClient) {}
 
   private _posts: Post[] = [];
@@ -12,13 +13,18 @@ export class PostService {
   private postsUpdated = new Subject<Post[]>();
 
   requestPosts() {
-    this.http
-      .get<{ message: string; posts: { _id: string; content: string }[] }>(
-        'http://localhost:3000/api/posts'
-      )
+    this.http.get<{
+      message: string;
+      posts: { _id: string; content: string, creatorId: string, creatorEmail: string }[]
+    }>('http://localhost:3000/api/posts')
       .subscribe((postsResponse) => {
-        this._posts = postsResponse.posts.map((post) => {
-          return { id: post._id, content: post.content };
+         this._posts = postsResponse.posts.map((post) => {
+          return {
+            id: post._id,
+            content: post.content,
+            creatorId: post.creatorId,
+            creatorEmail: post.creatorEmail
+            };
         });
         this.postsUpdated.next([...this._posts]);
       });
@@ -29,11 +35,19 @@ export class PostService {
   }
 
   addPost(post: Post) {
-    this.http
-      .post<{ message: string,  postId: string }>('http://localhost:3000/api/posts', post)
+    this.http.post<{
+      message: string,
+      postId: string,
+      creatorId: string,
+      creatorEmail: string
+      }>('http://localhost:3000/api/posts', post)
       .subscribe((responseData) => {
         console.log(responseData.message);
+
         post.id = responseData.postId;
+        post.creatorEmail = responseData.creatorEmail;
+        post.creatorId =  responseData.creatorId;
+
         this._posts.push(post);
         this.postsUpdated.next([...this._posts]);
       });

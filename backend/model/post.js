@@ -8,7 +8,9 @@ const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema({
 // _id: String
-  content: { type: String, required: true }
+  content: { type: String, required: true },
+  creatorId: { type: String, required: true },
+  creatorEmail: { type: String, required: true }
 })
 
 module.exports = mongoose.model('Post', postSchema);

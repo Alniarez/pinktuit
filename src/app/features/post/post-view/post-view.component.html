@@ -1,4 +1,14 @@
-<span>{{ post.content }}</span>
-<button-component (onClick)="removePost()">Remove</button-component>
+<div class="user">
+  <user-image [user-email]="post.creatorEmail"></user-image> {{ post.creatorEmail }}
+</div>
 
+<div class="post">
+  <a class="nostyle">
+    {{ post.content }}
+  </a>
+</div>
+
+<div class="actions">
+  <button-component *ngIf="myPost" (onClick)="removePost()">Remove</button-component>
+</div>
 <!-- {{ post | json }} -->

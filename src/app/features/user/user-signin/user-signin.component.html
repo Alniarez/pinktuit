@@ -1,0 +1,14 @@
+<form #signinForm="ngForm" (submit)="signin(signinForm)">
+  name
+  <input type="text" name="name" ngModel required>
+  <hr>
+  email
+  <input type="email" name="email" ngModel required>
+  <hr>
+  pass1
+  <input type="password"  name="password" ngModel required>
+  <hr>
+  pass1
+  <input type="password"  name="repeatPassword" ngModel required>
+  <button-component [buttonType]="ButtonType.Submit">Create account</button-component>
+</form>

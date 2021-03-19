@@ -2,9 +2,9 @@
   display: grid;
 
   grid-template-areas:
-    'post'
-    'actions';
-    grid-template-rows: 1fr;
+    'post post'
+    'user actions';
+    grid-template-rows: 1fr auto;
     grid-template-columns: 1fr auto;
 
   width: 100%;
@@ -16,12 +16,36 @@
   font-weight: bold;
 }
 
-span {
+.user {
+  grid-area: user;
+
+  display: flex;
+  align-items: center;
+}
+.user img {
+  max-height: 70px;
+  width: auto;
+}
+
+.post {
   grid-area: post;
 }
 
-button-component {
+.actions {
   grid-area: actions;
+
   justify-self: end;
+  align-self: end;
 }
 
+a.nostyle:link {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+
+a.nostyle:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}

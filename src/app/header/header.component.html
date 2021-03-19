@@ -3,15 +3,15 @@
       <span>PinkTuit</span>
     </button-component>
 
-    <button-component (onClick)="logIn($event)">
+    <button-component *ngIf="!isUserLoggedIn()" (onClick)="logIn($event)">
       Log in
     </button-component>
 
-    <button-component (onClick)="createAccount($event)">
+    <button-component *ngIf="!isUserLoggedIn()" (onClick)="createAccount($event)">
       Create account
     </button-component>
 
-    <button-component (onClick)="logOut($event)" [disabled]="true"  >
+    <button-component *ngIf="isUserLoggedIn()" (onClick)="logOut($event)">
       Log out
     </button-component>
 
