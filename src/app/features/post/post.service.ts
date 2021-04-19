@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from './post.model';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
@@ -30,7 +30,7 @@ export class PostService {
       });
   }
 
-  getPostUpdateListener() {
+  getPostUpdateListener(): Observable<Post[]> {
     return this.postsUpdated.asObservable();
   }
 

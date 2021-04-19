@@ -7,5 +7,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppComponent  {
 
+  messages: string[] = ["message 1", "message 2"];
+
+
+
 }
 

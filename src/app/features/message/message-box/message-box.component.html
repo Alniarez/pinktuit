@@ -1,4 +1,5 @@
-<div *ngFor="let message of messages"
+<div class="message" *ngFor="let message of messages"
   [class.error]="message.type === MessageType.ErrorMessage">
-  {{ message.message }}
+  <span>{{ message.message }}</span>
+  <span (click)="hideMessage(message)" style="cursor: pointer">X</span>
 </div>

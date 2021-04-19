@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { MessageService } from "../message/message.service";
 
 @Injectable({providedIn: "root"})
 export class AuthenticationService {
@@ -22,16 +23,18 @@ export class AuthenticationService {
   }
 
   constructor(private readonly _httpClient: HttpClient,
-              private readonly _router: Router){
+              private readonly _router: Router,
+              private readonly _messageService: MessageService){
   }
 
   signin(email: string, username: string, password: string){
     this._httpClient.post('http://localhost:3000/api/user/signin', {email: email, username: username, password: password})
       .subscribe(result => {
-        console.dir(result);
+        this._messageService.showMessage("Created user succesfully")
         // Redirect to login
         this._router.navigate(['login'])
-      })
+      },
+      errorData => this._messageService.showError(errorData.error.message))
   }
 
   login(email: string, password: string) {
@@ -40,19 +43,26 @@ export class AuthenticationService {
         password: password,
       })
       .subscribe((responseData) => {
-        this._token = responseData.token;
-        this._myEmail = email;
-        this._myId = responseData.myId;
+          this._token = responseData.token;
+          this._myEmail = email;
+          this._myId = responseData.myId;
 
-        // Redirect to home
-        this._router.navigate([''])
-      });
+          this._messageService.showMessage("Logged in succesfully")
+
+          // Redirect to home
+          this._router.navigate([''])
+        },(errorData) => {
+          this._messageService.showError(errorData.error.message)
+         }
+      );
   }
 
   logout() {
     this._token = undefined;
     this._myEmail = undefined;
     this._myId = undefined;
+
+    this._messageService.showMessage("Logged out succesfully")
   }
 
 }
