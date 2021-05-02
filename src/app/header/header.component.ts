@@ -1,8 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from '../features/user/authentication.service';
-import { not } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'header-component',

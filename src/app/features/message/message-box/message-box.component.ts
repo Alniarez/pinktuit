@@ -39,9 +39,5 @@ export class MessageBox implements OnInit, OnDestroy {
   hideMessage(message: Message) {
     this._messageService.dismissMessage(message);
   }
-
-  getNow(){
-    return new Date();
-  }
   
 }
